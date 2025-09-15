@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bundle & Save</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bundle-container">
+
+    <!-- Heading with border -->
+    <div class="bundle-header">
+      <h2>Bundle & Save</h2>
+    </div>
+
+    <!-- 1 Unit -->
+    <div class="bundle-option" data-price="10.00">
+      <input type="radio" name="bundle" id="unit1" value="1" />
+      <label for="unit1">
+        <div class="left">
+          <span class="unit-text">1 Unit</span>
+          <span class="discount-badge">5% Off</span>
+        </div>
+        <div class="right">
+          <span class="price">$10.00 USD</span>
+        </div>
+      </label>
+      <div class="dropdowns">
+        <div>
+          <label>#1  Silver</label>
+          <select><option>Size</option><option>S</option><option>M</option><option>L</option></select>
+          <select><option>Colour</option><option>Black</option><option>Gray</option><option>White</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Unit (Most Popular) -->
+<div class="bundle-option most-popular" data-price="$18.00">
+  <input type="radio" name="bundle" id="pair2" value="2" checked />
+  <label for="pair2">
+    <div class="left">
+      <strong>2 Unit</strong>
+      <span class="discount-badge">20% Off</span>
+    </div>
+    <div class="right">
+      <span class="price">$18.00 USD</span>
+    </div>
+  </label>
+    <div class="ribbon">MOST POPULAR</div>
+      </label>
+      <div class="dropdowns">
+        <div>
+          <label>#1 Gold</label>
+          <select><option>Size</option><option>S</option><option>M</option><option>L</option></select>
+          <select><option>Colour</option><option>Black</option><option>Gray</option><option>White</option></select>
+        </div>
+        <div>
+          <label>#2 Platinum</label>
+          <select><option>Size</option><option>S</option><option>M</option><option>L</option></select>
+          <select><option>Colour</option><option>Black</option><option>Gray</option><option>White</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Unit -->
+    <div class="bundle-option" data-price="24.00">
+      <input type="radio" name="bundle" id="unit3" value="3" />
+      <label for="unit3">
+        <div class="left">
+          <span class="unit-text">3 Unit</span>
+          <span class="discount-badge">18% Off</span>
+        </div>
+        <div class="right">
+          <span class="price">$24.00 USD</span>
+        </div>
+      </label>
+      <div class="dropdowns">
+        <div>
+          <label>#1 Silver</label>
+          <select><option>Size</option><option>S</option><option>M</option><option>L</option></select>
+          <select><option>Colour</option><option>Black</option><option>Gray</option><option>White</option></select>
+        </div>
+        <div>
+          <label>#2 Gold</label>
+          <select><option>Size</option><option>S</option><option>M</option><option>L</option></select>
+          <select><option>Colour</option><option>Black</option><option>Gray</option><option>White</option></select>
+        </div>
+        <div>
+          <label>#3 Platinum</label>
+          <select><option>Size</option><option>S</option><option>M</option><option>L</option></select>
+          <select><option>Colour</option><option>Black</option><option>Gray</option><option>White</option></select>
+        </div>
+      </div>
+    </div>
+
+    <p class="shipping">Free Delivery</p>
+    <div class="total">
+      Total : <strong id="total-price">$18.00 USD</strong>
+    </div>
+    <button class="add-to-cart">+ Add to Cart</button>
+    <p class="footer">© Powered by Pumper</p>
+  </div>
+
+  <script>
+    const options = document.querySelectorAll('.bundle-option');
+    const radios = document.querySelectorAll('input[name="bundle"]');
+    const totalPriceDisplay = document.getElementById('total-price');
+
+    function updateUI() {
+      options.forEach(option => {
+        const dropdown = option.querySelector('.dropdowns');
+        const input = option.querySelector('input[name="bundle"]');
+        const price = option.getAttribute('data-price');
+
+        if (dropdown) {
+          dropdown.style.display = input.checked ? 'block' : 'none';
+        }
+
+        if (input.checked) {
+          option.classList.add('selected');
+          totalPriceDisplay.innerHTML = `$${price} USD`;
+        } else {
+          option.classList.remove('selected');
+        }
+      });
+    }
+
+    radios.forEach(radio => {
+      radio.addEventListener('change', updateUI);
+    });
+
+    updateUI();
+  </script>
+</body>
+</html>
